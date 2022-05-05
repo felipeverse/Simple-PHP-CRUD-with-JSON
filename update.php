@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($isValid) {
         updateUser($_POST, $userId);
 
-        if (isset($_FILES['picture'])) {
+        if (isset($_FILES['picture']) && $_Files['name']) {
             uploadImage($_FILES['picture'], $user);
         }
     
