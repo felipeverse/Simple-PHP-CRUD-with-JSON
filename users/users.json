@@ -1,0 +1,29 @@
+{
+    "lastId": 29,
+    "users": [
+        {
+            "name": "Gwen Stacy",
+            "username": "Gwenny",
+            "email": "Gwenzelle65@marvel.com",
+            "website": "https:\/\/marvel.fandom.com\/wiki\/Gwendolyn_Stacy_(Earth-65)",
+            "id": 15,
+            "extension": "png"
+        },
+        {
+            "name": "Miles Morales",
+            "username": "Thwippy",
+            "email": "OriginalOne1610@marvel.com",
+            "website": "https:\/\/marvel.fandom.com\/wiki\/Miles_Morales_(Earth-1610)#cite_note-Spider-Man.2FDeadpool_Vol_1_2-15",
+            "id": 28,
+            "extension": "png"
+        },
+        {
+            "name": "Peter B. Parker",
+            "username": "Janky",
+            "email": "SpiderTeacher@marvel.com",
+            "website": "https:\/\/marvel-movies.fandom.com\/wiki\/Peter_Parker_(Into_the_Spider-Verse)",
+            "id": 29,
+            "extension": "png"
+        }
+    ]
+}
