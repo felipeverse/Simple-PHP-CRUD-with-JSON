@@ -34,8 +34,8 @@ function createUser ($newUser)
     $users = getUsers();
     $users[] = $newUser;
 
-    $json['users'] = $users;
     $json['lastId'] = $newUser['id'];
+    $json['users'] = $users;
 
     putJson($json);
 
@@ -44,10 +44,11 @@ function createUser ($newUser)
 
 function updateUser ($data, $id)
 {
+    $updateUser = [];
     $users = getUsers();
     foreach ($users as $i => $user) {
         if ($user['id'] == $id) {
-            $users[$i] = array_merge($user, $data);
+            $users[$i] = $updateUser = array_merge($user, $data);
         }
     }
 
@@ -55,6 +56,8 @@ function updateUser ($data, $id)
     $json['users'] = $users;
 
     putJson($json);
+
+    return $updateUser;
 }
 
 function deleteUser ($id)
@@ -63,7 +66,6 @@ function deleteUser ($id)
 
     foreach ($users as $i => $user) {
         if ($user['id'] == $id) {
-            // unset($users[$i]);
             array_splice($users, $i, 1);
         }
     }
@@ -92,9 +94,36 @@ function uploadImage($file, $user)
     $user['extension'] = $extension;
 
     updateUser($user, $user['id']);
+    
 }
 
 function putJson($json)
 {
     file_put_contents(__DIR__ . "/users.json", json_encode($json, JSON_PRETTY_PRINT));
+}
+
+function validateUser($user, &$errors) {
+    $isValid = true;
+    
+    if (!$user['name']) {
+        $isValid = false;
+        $errors['name'] = 'Name is mandatory.';
+    }
+
+    if (!$user['username'] || strlen($user['username']) < 5 || strlen($user['username']) > 16) {
+        $isValid = false;
+        $errors['username'] = 'Username is required and it must be more than 5 and less than 16 characters.';
+    }
+
+    if ($user['email'] && !filter_var($user['email'], FILTER_VALIDATE_EMAIL)) {
+        $isValid = false;
+        $errors['email'] = 'This must be a valid email address.';
+    }
+
+    if ($user['website'] && !filter_var($user['website'], FILTER_VALIDATE_DOMAIN)) {
+        $isValid = false;
+        $errors['website'] = 'This must be a valida website.';
+    }
+
+    return $isValid;
 }

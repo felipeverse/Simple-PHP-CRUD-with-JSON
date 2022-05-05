@@ -1,12 +1,12 @@
 <?php
 require __DIR__ . '/users/users.php';
 
-if (!isset($_GET['id'])) {
+if (!isset($_POST['id'])) {
     include "partials/not_found.php";
     exit;
 }
 
-$userId = $_GET['id'];
+$userId = $_POST['id'];
 
 $user = getUserById($userId);
 if (!$user) {
