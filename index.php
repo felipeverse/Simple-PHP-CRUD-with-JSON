@@ -55,12 +55,10 @@ include "partials/header.php";
                                         <i class="bi bi-pencil-square">
                                         </i>
                                     </a>
-                                    <form method="POST" action="delete.php">
-                                        <input type="hidden" name="id" value="<?php echo $user['id'] ?>">
-                                        <button class="mx-1 btn btn-outline-danger">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </button>
-                                    </form>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-outline-danger deleteModalButton" data-toggle="modal" data-target="#deleteModal" data-id="<?php echo $user['id'] ?>">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
                                 </td>
                             </tr>
                     <?php endforeach; ?>
@@ -71,6 +69,10 @@ include "partials/header.php";
                 </tr>
             <?php endif; ?>
         </table>
+
+        <?php include "_deleteModal.php"; ?>
+        
+
     </div>
 
     <?php include "partials/footer.php"; ?>
